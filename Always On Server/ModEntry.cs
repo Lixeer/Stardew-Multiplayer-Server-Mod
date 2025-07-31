@@ -122,12 +122,22 @@ namespace Always_On_Server
 
         private void OnMenuChanged(object sender, MenuChangedEventArgs e)
         {
+            if (e.NewMenu == null)
+                return;
+            base.Monitor.Log("Menu changed", LogLevel.Debug);
+            base.Monitor.Log(e.NewMenu.GetType().ToString(), LogLevel.Debug);
             if (IsEnabled && e.NewMenu is ShippingMenu)
-		    {
-			    this.shippingMenuActive = true;
-			    base.Monitor.Log("Skipping shipping menu");
-			    base.Helper.Reflection.GetMethod(Game1.activeClickableMenu, "okClicked").Invoke();
-		    }
+            {
+                this.shippingMenuActive = true;
+                base.Monitor.Log("Skipping shipping menu");
+                base.Helper.Reflection.GetMethod(Game1.activeClickableMenu, "okClicked").Invoke();
+            }
+            if (IsEnabled && e.NewMenu is LevelUpMenu)
+            {
+                this.shippingMenuActive = true;
+                base.Monitor.Log("Skipping shipping menu");
+                base.Helper.Reflection.GetMethod(Game1.activeClickableMenu, "okButtonClicked").Invoke();
+            }
         }
 
 
