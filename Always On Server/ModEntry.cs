@@ -116,8 +116,20 @@ namespace Always_On_Server
             helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked; //handles various events that should occur as soon as they are available
             helper.Events.Input.ButtonPressed += this.OnButtonPressed;
             helper.Events.Display.Rendered += this.OnRendered;
+            helper.Events.Display.MenuChanged += OnMenuChanged;
             helper.Events.Specialized.UnvalidatedUpdateTicked += OnUnvalidatedUpdateTick; //used bc only thing that gets throug save window
         }
+
+        private void OnMenuChanged(object sender, MenuChangedEventArgs e)
+        {
+            if (IsEnabled && e.NewMenu is ShippingMenu)
+		    {
+			    this.shippingMenuActive = true;
+			    base.Monitor.Log("Skipping shipping menu");
+			    base.Helper.Reflection.GetMethod(Game1.activeClickableMenu, "okClicked").Invoke();
+		    }
+        }
+
 
 
 
