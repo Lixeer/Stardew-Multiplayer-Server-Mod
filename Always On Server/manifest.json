@@ -1,10 +1,9 @@
 {
   "Name": "Stardew Multiplayer Server",
-  "Author": "funny-snek & Zuberii & moy",
+  "Author": "Lixeer",
   "Version": "1.0.5",
   "Description": "A Headless server mod.",
-  "UniqueID": "moy.Always_On_Server",
-  "EntryDll": "Stardew-Multiplayer-Server.dll",
-  "MinimumApiVersion": "4.0",
-  "UpdateKeys": [ "Nexus:20659" ]
+  "UniqueID": "Lixeer.Always_On_Server",
+  "EntryDll": "Stardew Multiplayer Server Mod.dll",
+  "MinimumApiVersion": "4.0"
 }
